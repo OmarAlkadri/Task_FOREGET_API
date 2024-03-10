@@ -25,14 +25,14 @@ namespace Task_FOREGET.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Users>>> GetUser()
         {
-            return await _context.User.ToListAsync();
+            return await _context.Users.ToListAsync();
         }
 
         // GET: api/Users/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Users>> GetUsers(Guid id)
         {
-            var users = await _context.User.FindAsync(id);
+            var users = await _context.Users.FindAsync(id);
 
             if (users == null)
             {
@@ -84,7 +84,7 @@ namespace Task_FOREGET.Controllers
             var hashedPassword = HashPassword(users.Password);
             users.HashPassword = hashedPassword;
 
-            _context.User.Add(users);
+            _context.Users.Add(users);
 
             await _context.SaveChangesAsync();
 
@@ -101,13 +101,13 @@ namespace Task_FOREGET.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUsers(Guid id)
         {
-            var users = await _context.User.FindAsync(id);
+            var users = await _context.Users.FindAsync(id);
             if (users == null)
             {
                 return NotFound();
             }
 
-            _context.User.Remove(users);
+            _context.Users.Remove(users);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -115,7 +115,7 @@ namespace Task_FOREGET.Controllers
 
         private bool UsersExists(Guid id)
         {
-            return _context.User.Any(e => e.Id == id);
+            return _context.Users.Any(e => e.Id == id);
         }
     }
 }

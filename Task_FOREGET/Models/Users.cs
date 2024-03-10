@@ -2,7 +2,7 @@
 
 namespace Task_FOREGET.Models
 {
-    public class Users
+    public class Users : IBaseEntity
     {
         [Key]
         public Guid Id { get; set; } = Guid.NewGuid();

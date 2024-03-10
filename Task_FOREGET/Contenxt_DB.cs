@@ -1,26 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Net;
-using System.Reflection.Emit;
-using System.Security.Policy;
 using Task_FOREGET.Models;
-using Task_FOREGET.ViewModels;
 
 namespace Task_FOREGET
 {
     public class Context_DB : DbContext
     {
-        public DbSet<Users> User { get; set; }
-        public DbSet<Shipments> Shipment { get; set; }
-
         public Context_DB()
         {
-
         }
 
         public Context_DB(DbContextOptions options) : base(options)
         {
-
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -35,5 +25,15 @@ namespace Task_FOREGET
                 optionsBuilder.UseMySQL("server=localhost;database=foregetDB;user=admin;password=admin");
             }
         }
+
+        public DbSet<Users> Users { get; set; }
+        public DbSet<Shipment> Shipments { get; set; }
+        public DbSet<MovementType> MovementTypes { get; set; }
+        public DbSet<Mode> Modes { get; set; }
+        public DbSet<UnitFirst> UnitFirst { get; set; }
+        public DbSet<SecondUnit> SecondUnit { get; set; }
+        public DbSet<PackageType> PackageType { get; set; }
+        public DbSet<Incoterms> Incoterms { get; set; }
+        public DbSet<Currency> Currency { get; set; }
     }
 }

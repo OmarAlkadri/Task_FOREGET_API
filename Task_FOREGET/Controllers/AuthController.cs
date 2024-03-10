@@ -20,6 +20,7 @@ namespace Task_FOREGET.Controllers
         {
             _context = context;
         }
+
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
         {
@@ -28,8 +29,7 @@ namespace Task_FOREGET.Controllers
                 return BadRequest("Invalid client request");
             }
 
-            var user = await _context.User.FirstOrDefaultAsync(u => u.UserName == loginModel.UserName);
-
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == loginModel.UserName);
 
             bool isValidLogin = VerifyPassword(loginModel.Password, user.HashPassword);
 
@@ -54,13 +54,13 @@ namespace Task_FOREGET.Controllers
             {
                 return Unauthorized("Username or password is incorrect.");
             }
-
-            return Unauthorized();
         }
+
         public static bool VerifyPassword(string password, string hashedPassword)
         {
             return BCrypt.Net.BCrypt.Verify(password, hashedPassword);
         }
+
         private string GenerateToken(Users user)
         {
             return "8gZp05K3DiVhFZh+O4Ttt+Ca7QBtQ8xaKyWckNM2Uw4hbB34dssdh2S81A4btNmH";

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Task_FOREGET;
 
@@ -10,9 +11,11 @@ using Task_FOREGET;
 namespace Task_FOREGET.Migrations
 {
     [DbContext(typeof(Context_DB))]
-    partial class Context_DBModelSnapshot : ModelSnapshot
+    [Migration("20240310180853_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
